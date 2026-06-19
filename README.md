@@ -2,7 +2,7 @@
 
 An AI-powered code analysis tool built with React and Gemini API.
 
-ExplainMyCode helps developers understand unfamiliar code by automatically detecting the programming language, explaining the code logic, identifying key concepts, analyzing time and space complexity, and suggesting possible improvements.
+ExplainMyCode analyzes source code and provides structured explanations, concept identification, complexity analysis, and improvement suggestions using AI.
 
 ## Features
 
