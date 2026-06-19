@@ -1,0 +1,39 @@
+#container{
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+h1{
+  text-align: left;
+}
+
+#box{
+  width: 100%;
+}
+
+.Analyze{
+  display: block;
+  margin: 20px auto 0;
+}
+
+.code-container{
+  width: 50%;
+}
+
+.output-container{
+  width: 50%;
+}
+
+.edit,.re-analyze{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#result-container{
+  padding: 20px;
+}
+
+.main-content{
+  display: flex;
+}
