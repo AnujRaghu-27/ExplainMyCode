@@ -1,6 +1,6 @@
 import { use, useState } from "react"
 
-function ResultLayout({code,setCode,analysisData}){
+function ResultLayout({code,setCode,analysisData,handleAnalyze}){
 
     const[isEditing,setIsEditing]=useState(false)
 
@@ -23,7 +23,7 @@ function ResultLayout({code,setCode,analysisData}){
                     <textarea rows={20} cols={75} placeholder="User code will appear here..." value={code} readOnly={!isEditing} onChange={(e)=>setCode(e.target.value)}/>
                     <br/>
                     <button className="edit" onClick={handleEdit}>{isEditing?"Save Changes":"Edit"}</button>
-                    <button className="re-analyze">Re-Analyze</button>
+                    <button className="re-analyze" onClick={handleAnalyze}>Re-Analyze</button>
                 </div>
 
                 <div className="output-container">
