@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function HomeLayout({setShowResult}){
+function HomeLayout({code,setCode,setShowResult}){
 
     function handlebutton(){
         setShowResult(true)
@@ -9,7 +9,7 @@ function HomeLayout({setShowResult}){
     return (
     <div id="container">
         <h1>ExplainMyCode</h1>
-        <textarea rows={20} cols={100} placeholder=""/>
+        <textarea rows={20} cols={100} placeholder="" value={code} onChange={(e)=>setCode(e.target.value)}/>
         <br/>
         <button className="Analyze" onClick={handlebutton}>Analyze</button>
     </div>
