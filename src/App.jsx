@@ -20,7 +20,7 @@ function App(){
     setIsLoading(true);
     try{
       const response = await AI.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.1-flash-lite",
       contents: `Analyze this code.
                 Rules:
                 - Return ONLY valid JSON.
@@ -70,7 +70,7 @@ function App(){
   }
   catch(error){
     console.log(error)
-    alert("Failed to analyze code.\n\nPossible reasons:\n• Daily AI usage limit reached\n• AI service temporarily unavailable\n\nPlease try again later.") 
+    alert("Unable to analyze code right now.\n\nPossible reasons:\n• Daily AI usage limit reached\n• AI service temporarily unavailable\n\nPlease try again later.") 
   }
   finally{
     setIsLoading(false)

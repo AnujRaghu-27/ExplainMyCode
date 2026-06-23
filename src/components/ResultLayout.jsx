@@ -20,7 +20,7 @@ function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading}){
                 
                 <div className="code-container">
                     <h1>Code</h1>
-                    <textarea rows={20} placeholder="User code will appear here..." value={code} readOnly={!isEditing} onChange={(e)=>setCode(e.target.value)}/>
+                    <textarea rows={20} value={code} readOnly={!isEditing} onChange={(e)=>setCode(e.target.value)}/>
                     <br/>
                     <button className="edit" onClick={handleEdit}>{isEditing?"Save Changes":"Edit"}</button>
                     <button className="re-analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...":"Re-Analyze"}</button>
