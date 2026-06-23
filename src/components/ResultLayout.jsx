@@ -1,6 +1,6 @@
 import { use, useState } from "react"
 
-function ResultLayout({code,setCode,analysisData,handleAnalyze}){
+function ResultLayout({code,setCode,handleAnalyze,analysis}){
 
     const[isEditing,setIsEditing]=useState(false)
 
@@ -29,28 +29,33 @@ function ResultLayout({code,setCode,analysisData,handleAnalyze}){
                 <div className="output-container">
                     <div className="card">
                         <h2>Language</h2>
-                        <p>{analysisData.language}</p>
+                        <p>{analysis.language}</p>
                     </div>
 
                     <div className="card">
                         <h2>Explanation</h2>
-                        <p>{analysisData.explanation}</p>
+                        <p>{analysis.explanation}</p>
                     </div>
 
                     <div className="card">
                         <h2>Concepts</h2>
-                        <p>{analysisData.concepts.join(",")}</p>
+                        <p>{analysis.concepts.join(",")}</p>
                     </div>
 
                     <div className="card">
                         <h2>Complexity</h2>
-                        <p>Time Complexity: {analysisData.timeComplexity}</p>
-                        <p>Space Complexity: {analysisData.spaceComplexity}</p>
+                        <p>Time Complexity: {analysis.timeComplexity}</p>
+                        <p>Space Complexity: {analysis.spaceComplexity}</p>
                     </div>
 
                     <div className="card">
                         <h2>Improvements</h2>
-                        <p>{analysisData.improvements}</p>
+                        <p>{analysis.improvements}</p>
+                    </div>
+
+                    <div className="card">
+                        <h2>Output</h2>
+                        <pre>{analysis.output}</pre>
                     </div>
 
                 </div>
