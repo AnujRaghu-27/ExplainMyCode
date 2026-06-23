@@ -11,6 +11,12 @@ function App(){
   const[analysis,setAnalysis]=useState("")
 
   async function handleAnalyze() {
+
+    if(!code.trim()){
+      alert("Please enter some code first.")
+      return
+    }
+
     setIsLoading(true);
     try{
       const response = await AI.models.generateContent({
@@ -52,9 +58,7 @@ function App(){
                   "output": ""
                 }
 
-                Code:
-                ${code}
-                `
+                Code:${code}`
     });
 
     const result=response.text.replace("```json","").replace("```","")
@@ -63,31 +67,24 @@ function App(){
 
     setAnalysis(data)
     setShowResult(true)
-  }catch(error){
+  }
+  catch(error){
     console.log(error)
-    alert("Failed to analyze code. Please try again."); 
-  }finally{
+    alert("Failed to analyze code.\n\nPossible reasons:\n• Daily AI usage limit reached\n• AI service temporarily unavailable\n\nPlease try again later.") 
+  }
+  finally{
     setIsLoading(false)
   }
 }
-  if (isLoading){
-    return(
-      <div className="loading-container">
-        <h1>Analyzing your code</h1>
-        <p>Please Wait...</p>
-      </div>
-    )
-  }else{
-    return (
-      <div>
-          {showResult?(
-            <ResultLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} analysis={analysis}/>
-          ):(
-            <HomeLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze}/>
-          )}
-      </div>
-    )
-  }
+  return (
+    <div>
+        {showResult?(
+          <ResultLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} analysis={analysis} isLoading={isLoading}/>
+        ):(
+          <HomeLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} isLoading={isLoading}/>
+        )}
+    </div>    
+  )
 }
 
 export default App

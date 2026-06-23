@@ -1,6 +1,6 @@
 import { use, useState } from "react"
 
-function ResultLayout({code,setCode,handleAnalyze,analysis}){
+function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading}){
 
     const[isEditing,setIsEditing]=useState(false)
 
@@ -12,7 +12,7 @@ function ResultLayout({code,setCode,handleAnalyze,analysis}){
     }
 
     return (
-        <div id="result-container">
+        <div className="result-container">
 
             <h1 className="header">Code Analysis</h1>
 
@@ -20,10 +20,10 @@ function ResultLayout({code,setCode,handleAnalyze,analysis}){
                 
                 <div className="code-container">
                     <h1>Code</h1>
-                    <textarea rows={20} cols={75} placeholder="User code will appear here..." value={code} readOnly={!isEditing} onChange={(e)=>setCode(e.target.value)}/>
+                    <textarea rows={20} placeholder="User code will appear here..." value={code} readOnly={!isEditing} onChange={(e)=>setCode(e.target.value)}/>
                     <br/>
                     <button className="edit" onClick={handleEdit}>{isEditing?"Save Changes":"Edit"}</button>
-                    <button className="re-analyze" onClick={handleAnalyze}>Re-Analyze</button>
+                    <button className="re-analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...":"Re-Analyze"}</button>
                 </div>
 
                 <div className="output-container">
@@ -54,7 +54,7 @@ function ResultLayout({code,setCode,handleAnalyze,analysis}){
                     </div>
 
                     <div className="card">
-                        <h2>Output</h2>
+                        <h2>Expected Output</h2>
                         <pre>{analysis.output}</pre>
                     </div>
 

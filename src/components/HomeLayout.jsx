@@ -1,13 +1,11 @@
-import { useState } from "react"
-
-function HomeLayout({code,setCode,handleAnalyze}){
+function HomeLayout({code,setCode,handleAnalyze,isLoading}){
 
     return (
-    <div id="container">
+    <div className="container">
         <h1>ExplainMyCode</h1>
-        <textarea rows={20} cols={100} placeholder="" value={code} onChange={(e)=>setCode(e.target.value)}/>
+        <textarea rows={20} placeholder="" value={code} onChange={(e)=>setCode(e.target.value)}/>
         <br/>
-        <button className="Analyze" onClick={handleAnalyze}>Analyze</button>
+        <button className="Analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...":"Analyze"}</button>
     </div>
   )
 }

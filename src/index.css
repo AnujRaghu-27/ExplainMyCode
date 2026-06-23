@@ -1,4 +1,4 @@
-#container{
+.container{
   max-width: 1000px;
   margin: 50px auto;
   padding: 30px;
@@ -8,21 +8,17 @@ h1{
   text-align: left;
 }
 
-#box{
-  width: 100%;
-}
-
 .Analyze{
   display: block;
   margin: 20px auto 0;
 }
 
 .code-container{
-  width: 50%;
+  width: 48%;
 }
 
 .output-container{
-  width: 50%;
+  width: 48%;
 }
 
 .edit,.re-analyze{
@@ -30,18 +26,17 @@ h1{
   margin-left: 10px;
 }
 
-#result-container{
+.result-container{
   padding: 20px;
 }
 
 .main-content{
   display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
-.loading-container{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+textarea{
+  width: 100%;
+  box-sizing: border-box;
 }
