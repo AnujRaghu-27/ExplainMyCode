@@ -1,4 +1,5 @@
 import { use, useState } from "react"
+import Editor from "@monaco-editor/react"
 
 function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading}){
 
@@ -13,14 +14,14 @@ function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading}){
 
     return (
         <div className="result-container">
-
-            <h1 className="header">Code Analysis</h1>
+            <h1>ExplainMyCode</h1>
+            <h2 className="header">Code Analysis</h2>
 
             <div className="main-content">
                 
                 <div className="code-container">
                     <h1>Code</h1>
-                    <textarea rows={20} value={code} readOnly={!isEditing} onChange={(e)=>setCode(e.target.value)}/>
+                    <Editor height="400px" theme="vs-dark" value={code} onChange={(value)=>setCode(value)} readOnly={!isEditing}/>
                     <br/>
                     <button className="edit" onClick={handleEdit}>{isEditing?"Save Changes":"Edit"}</button>
                     <button className="re-analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...":"Re-Analyze"}</button>

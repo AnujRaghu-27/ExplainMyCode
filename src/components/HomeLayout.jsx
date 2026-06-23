@@ -1,9 +1,11 @@
+import Editor from "@monaco-editor/react";
+
 function HomeLayout({code,setCode,handleAnalyze,isLoading}){
 
     return (
     <div className="container">
         <h1>ExplainMyCode</h1>
-        <textarea rows={20} value={code} onChange={(e)=>setCode(e.target.value)}/>
+        <Editor height="400px" theme="vs-dark" value={code} onChange={(value)=>setCode(value)}/>
         <br/>
         <button className="Analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...":"Analyze"}</button>
     </div>
@@ -11,3 +13,4 @@ function HomeLayout({code,setCode,handleAnalyze,isLoading}){
 }
 
 export default HomeLayout
+
