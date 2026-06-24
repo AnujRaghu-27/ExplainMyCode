@@ -1,16 +1,6 @@
-import { use, useState } from "react"
 import Editor from "@monaco-editor/react"
 
-function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading}){
-
-    const[isEditing,setIsEditing]=useState(false)
-
-    function handleEdit(){
-        if (isEditing){
-            setIsEditing(false)
-        }else{
-        setIsEditing(true)}
-    }
+function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading,isEditing,handleEdit}){
 
     return (
         <div className="result-container">
@@ -21,7 +11,7 @@ function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading}){
                 
                 <div className="code-container">
                     <h1>Code</h1>
-                    <Editor height="400px" theme="vs-dark" value={code} onChange={(value)=>setCode(value)} readOnly={!isEditing}/>
+                    <Editor height="400px" theme="vs-dark" value={code} onChange={(value)=>setCode(value)} options={{readOnly:!isEditing}}/>
                     <br/>
                     <button className="edit" onClick={handleEdit}>{isEditing?"Save Changes":"Edit"}</button>
                     <button className="re-analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...":"Re-Analyze"}</button>

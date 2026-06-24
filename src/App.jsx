@@ -9,6 +9,14 @@ function App(){
   const [code,setCode]=useState("")
   const[isLoading,setIsLoading]=useState(false)
   const[analysis,setAnalysis]=useState("")
+  const[isEditing,setIsEditing]=useState(false)
+
+  function handleEdit(){
+        if (isEditing){
+          setIsEditing(false)
+        }else{
+          setIsEditing(true)}
+    }
 
   async function handleAnalyze() {
 
@@ -16,6 +24,8 @@ function App(){
       alert("Please enter some code first.")
       return
     }
+
+    setIsEditing(false)
 
     setIsLoading(true);
     try{
@@ -79,7 +89,7 @@ function App(){
   return (
     <div>
         {showResult?(
-          <ResultLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} analysis={analysis} isLoading={isLoading}/>
+          <ResultLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} analysis={analysis} isLoading={isLoading} isEditing={isEditing} handleEdit={handleEdit}/>
         ):(
           <HomeLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} isLoading={isLoading}/>
         )}
