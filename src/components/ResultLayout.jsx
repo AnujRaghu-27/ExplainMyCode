@@ -5,7 +5,12 @@ function ResultLayout({ code, setCode, handleAnalyze, analysis, isLoading, isEdi
     return (
         <div className="container">
             <div className="header">
-                <h1>ExplainMyCode</h1>
+                <div className="logo">
+                    <div className="logo-icon">
+                        &lt;/&gt;
+                    </div>
+                    <h1> Explain<span>MyCode</span></h1>
+                </div>
 
                 <div className="header-btns">
                     <button className="edit" onClick={handleEdit} disabled={analysis ? false : true}>{isEditing ? "Save Changes" : "Edit"}</button>
@@ -18,7 +23,7 @@ function ResultLayout({ code, setCode, handleAnalyze, analysis, isLoading, isEdi
 
                 <div className="code-container">
                     <h1>Code</h1>
-                    <Editor height="550px" theme="vs-dark" value={code} onChange={(value) => setCode(value)} options={{ readOnly: analysis ? !isEditing : false }} />
+                    <Editor height="550px" theme="vs-dark" value={code} onChange={(value) => setCode(value)} options={{ readOnly: analysis ? !isEditing : false, fontSize:14 }} />
                     <br />
 
                     <div className="tip">
@@ -38,11 +43,11 @@ function ResultLayout({ code, setCode, handleAnalyze, analysis, isLoading, isEdi
                     <div className="box">
 
 
-                        <div className="card">
+                        <div className="complexity">
                             <h3>TIME COMPLEXITY</h3>
                             <p>{analysis ? analysis.timeComplexity : "--"}</p>
                         </div>
-                        <div className="card">
+                        <div className="complexity">
                             <h3>SPACE COMPLEXITY</h3>
                             <p>{analysis ? analysis.spaceComplexity : "--"}</p>
                         </div>
