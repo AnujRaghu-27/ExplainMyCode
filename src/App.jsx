@@ -1,14 +1,12 @@
 import {useState} from "react"
-import HomeLayout from "./components/HomeLayout"
 import ResultLayout from "./components/ResultLayout"
 import AI from "./gemini"
 
 function App(){
 
-  const [showResult,setShowResult]=useState(false)
   const [code,setCode]=useState("")
   const[isLoading,setIsLoading]=useState(false)
-  const[analysis,setAnalysis]=useState("")
+  const[analysis,setAnalysis]=useState(null)
   const[isEditing,setIsEditing]=useState(false)
 
   function handleEdit(){
@@ -182,7 +180,6 @@ function App(){
     const data=JSON.parse(result)
 
     setAnalysis(data)
-    setShowResult(true)
   }
   catch(error){
     console.log(error)
@@ -194,11 +191,7 @@ function App(){
 }
   return (
     <div>
-        {showResult?(
           <ResultLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} analysis={analysis} isLoading={isLoading} isEditing={isEditing} handleEdit={handleEdit}/>
-        ):(
-          <HomeLayout code={code} setCode={setCode} handleAnalyze={handleAnalyze} isLoading={isLoading}/>
-        )}
     </div>    
   )
 }

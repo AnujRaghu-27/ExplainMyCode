@@ -36,8 +36,3 @@ h1 {
   gap: 30px;
   flex-wrap: wrap;
 }
-
-textarea {
-  width: 100%;
-  box-sizing: border-box;
-}
