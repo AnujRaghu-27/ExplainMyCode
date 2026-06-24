@@ -1,51 +1,71 @@
 import Editor from "@monaco-editor/react"
 
-function ResultLayout({code,setCode,handleAnalyze,analysis,isLoading,isEditing,handleEdit}){
+function ResultLayout({ code, setCode, handleAnalyze, analysis, isLoading, isEditing, handleEdit }) {
 
     return (
-        <div className="result-container">
-            <h1>ExplainMyCode</h1>
+        <div className="container">
+            <div className="header">
+                <h1>ExplainMyCode</h1>
+
+                <div className="header-btns">
+                    <button className="edit" onClick={handleEdit} disabled={analysis ? false : true}>{isEditing ? "Save Changes" : "Edit"}</button>
+                    <button className="analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading ? "Analyzing..." : analysis ? "Re-Analyze" : "Analyze Code"}</button>
+                </div>
+            </div>
+
 
             <div className="main-content">
-                
+
                 <div className="code-container">
                     <h1>Code</h1>
-                    <Editor height="400px" theme="vs-dark" value={code} onChange={(value)=>setCode(value)} options={{readOnly:analysis? !isEditing : false}}/>
-                    <br/>
-                    <button className="edit" onClick={handleEdit} disabled={analysis?false :true}>{isEditing?"Save Changes":"Edit"}</button>
-                    <button className="re-analyze" onClick={handleAnalyze} disabled={isLoading}>{isLoading?"Analyzing...": analysis? "Re-Analyze" : "Analyze Code"}</button>
+                    <Editor height="550px" theme="vs-dark" value={code} onChange={(value) => setCode(value)} options={{ readOnly: analysis ? !isEditing : false }} />
+                    <br />
+
+                    <div className="tip">
+                        Paste your code above and click "Analyze Code" to get started.
+                    </div>
                 </div>
 
                 <div className="output-container">
-                    <div className="card">
-                        <h2>Language</h2>
-                        <p>{analysis? analysis.language : "Waiting for analysis..."}</p>
+                    <div className="analysis-header">
+                        <h2>Code Analysis</h2>
+
+                        <div className="language">
+                            <p>{analysis ? analysis.language : "--"}</p>
+                        </div>
+                    </div>
+
+                    <div className="box">
+
+
+                        <div className="card">
+                            <h3>TIME COMPLEXITY</h3>
+                            <p>{analysis ? analysis.timeComplexity : "--"}</p>
+                        </div>
+                        <div className="card">
+                            <h3>SPACE COMPLEXITY</h3>
+                            <p>{analysis ? analysis.spaceComplexity : "--"}</p>
+                        </div>
+
                     </div>
 
                     <div className="card">
-                        <h2>Explanation</h2>
-                        <p>{analysis? analysis.explanation : "Waiting for analysis..."}</p>
+                        <h2>EXPLANATION</h2>
+                        <p>{analysis ? analysis.explanation : "Analyze your code to get a detailed explanation."}</p>
                     </div>
 
                     <div className="card">
-                        <h2>Concepts</h2>
-                        <p>{analysis? analysis.concepts.join(", ") : "Waiting for analysis..."}</p>
+                        <h2>KEY CONCEPTS</h2>
+                        <p>{analysis ? analysis.concepts.join(", ") : "Concepts will appear here after analysis."}</p>
+                    </div>
+                    <div className="card">
+                        <h2>IMPROVEMENTS</h2>
+                        <p>{analysis ? analysis.improvements : "Suggestions for improving your code will appear here."}</p>
                     </div>
 
                     <div className="card">
-                        <h2>Complexity</h2>
-                        <p>Time Complexity: {analysis? analysis.timeComplexity : "Waiting for analysis..."}</p>
-                        <p>Space Complexity: {analysis? analysis.spaceComplexity : "Waiting for analysis..."}</p>
-                    </div>
-
-                    <div className="card">
-                        <h2>Improvements</h2>
-                        <p>{analysis? analysis.improvements : "Waiting for analysis..."}</p>
-                    </div>
-
-                    <div className="card">
-                        <h2>Expected Output</h2>
-                        <pre>{analysis? analysis.output : "Waiting for analysis..."}</pre>
+                        <h2>EXPECTED OUTPUT</h2>
+                        <pre>{analysis ? analysis.output : "Run analysis to see the expected output."}</pre>
                     </div>
 
                 </div>
